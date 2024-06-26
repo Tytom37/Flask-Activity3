@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,33 +9,61 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+    <style>
+        #sidebar {
+            background-color: #1a202c;
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        #sidebar a {
+            color: white;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+        #sidebar a:hover {
+            background-color: #2d3748;
+        }
+        @media (max-width: 768px) {
+            #sidebar {
+                position: fixed;
+                width: 100%;
+                height: auto;
+                z-index: 1;
+            }
+            #content {
+                margin-top: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="w-[1200px] mx-auto">
-
-        <section class="bg-blue-700 text-white flex justify-between">
-            <div id="brand" class="text-xl content-center px-3">
-                My Awesome App
+    <div class="container-fluid">
+        <div class="row">
+            <div id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark">
+                <div id="brand" class="text-xl mb-4">
+                    My Awesome App
+                </div>
+                <nav id="main-nav">
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/products">Products</a>
+                    <a href="/contact">Contact Us</a>
+                </nav>
             </div>
-            <nav id="main-nav" class="flex">
-                <a href="/" class="p-3 hover:bg-blue-600" >Home</a>
-                <a href="/about" class="p-3 hover:bg-blue-600" >About</a>
-                <a href="/products" class="p-3 hover:bg-blue-600" >Products</a>
-                <a href="/contact" class="p-3 hover:bg-blue-600" >Contact Us</a>
-            </nav>
-
-        </section>
-
-        <article id="content">
-            @yield('content')
-        </article>
-
-        <footer class="text-center text-gray-500 py-3 mt-[30rem]">
-            Copyright &copy; 2024. ALl rights reserved.
-        </footer>
-
+            <main id="content" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="flex flex-col" >
+                    @yield('content')
+                </div>
+                <footer class="text-center text-gray-500 py-3 mt-auto">
+                    Copyright &copy; 2024. All rights reserved.
+                </footer>
+            </main>
+        </div>
     </div>
 </body>
 </html>
+ 

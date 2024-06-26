@@ -21,9 +21,9 @@ class ProductController extends Controller
             $html .= "
                 <div class='p-4 rounded overflow-hidden shadow-md bg-blue-100 mt-3'>
                     <h1 class='text-2xl'>$prod->name</h1>
-                    <h3 class='text-2xl'>$prod->desc</h3>
+                    <h3 class='text-2xl'>$prod->description</h3>
                     <p class='text-lg'>Price: $prod->price</p>
-                    <p class='text-lg'>Quantity: $prod->qty</p>
+                    <p class='text-lg'>Quantity: $prod->quantity</p>
                 </div>
             ";
         }
@@ -36,18 +36,8 @@ class ProductController extends Controller
 
     public function store(Request $request) {
         
-        $validator = Validator::make($request->all(), [
-            'name' =>'required',
-            'desc' =>'required',
-            'price' =>'required',
-            'qty' =>'required'
-        ]);
-
-        if($validator->fails()) {
-            $products = Product::orderBy('name');
-            return view('templates._error', ['errors' => $validator->errors(), 'products' => $products]);
-
-        };
+        
+        
 
         $products = Product::orderBy('name');
 
