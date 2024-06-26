@@ -30,18 +30,22 @@
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="name" name="name" >
-                                                                        </div>
+                                        <div id = "name_error" hx-swap-oob="true"> </div>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="desc" class="form-label">Description</label>
                                         <textarea class="form-control" id="desc" name="desc" ></textarea>
+                                        <div id = "desc_error" hx-swap-oob="true"> </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="price" class="form-label">Price</label>
                                         <input type="number" class="form-control" id="price" name="price" >
+                                        <div id = "price_error" hx-swap-oob="true"> </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="qty" class="form-label">Quantity</label>
                                         <input type="number" class="form-control" id="qty" name="qty" >
+                                        <div id = "qty_error" hx-swap-oob="true"> </div>
                                     </div>
                                 </div>
                                 <div id="addProductMessage" hx-swap-oob="true">
@@ -54,6 +58,14 @@
                         </div>
                     </div>
                     <script>
+                        function resetModal() {
+                            document.getElementById('name_error').innerHTML = '';
+                            document.getElementById('desc_error').innerHTML = '';
+                            document.getElementById('price_error').innerHTML = '';
+                            document.getElementById('qty_error').innerHTML = '';
+                            document.getElementById('addProductMessage').innerHTML = '';
+                        }
+
                         document.getElementById('staticBackdrop').addEventListener('hidden.bs.modal', function() {
                             document.getElementById('addProductMessage').innerHTML = '';
                             document.getElementById('closeButton').style.display = 'none';
