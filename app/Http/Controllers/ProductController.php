@@ -9,30 +9,17 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     public function index(Request $request) {
-        $products = Product::orderBy('name');
-    
-        if($request->filter) {
+
+        $query = Product::orderBy('name');
+        
+        if ($request->filter) {
             $products->where('name', 'like', "%$request->filter%");
         }
-    
-        $html = "<div class='flex flex-col gap-2'>";
-    
-        foreach($products->get() as $prod) {
-            $html .= "
-                <div class='p-4 rounded overflow-hidden shadow-md bg-blue-100 mt-3'>
-                    <h1 class='text-2xl'>$prod->name</h1>
-                    <h3 class='text-2xl'>$prod->desc</h3>
-                    <p class='text-lg'>Price: $prod->price</p>
-                    <p class='text-lg'>Quantity: $prod->qty</p>
-                </div>
-            ";
-        }
-    
-        $html .= "</div>";
-    
-        return $html;
+
+        $products = $query->get();
+
+        return view('templates._list-of-products', ['products' => $products]);
     }
-    
 
     public function store(Request $request) {
         
@@ -54,5 +41,34 @@ class ProductController extends Controller
         Product::create($request->all());
 
         return view('templates._products-list',['products'=>$products]);
+    }
+
+    public function update(Request $request, Product $product) {
+
+        $fields = $request->validate([
+            'name' => 'required',
+            'desc' => 'required',
+            'price' => 'required|integer',
+            'qty' => 'required|integer',
+        ]);
+
+        $product->update($fields);
+
+        return view('pages.products');
+    }
+
+    public function destroy(Product $product) {
+        $product = Product::find($product->id);
+        $product->delete();
+
+        return view('templates._products-list-for-create', ['products'=>$product]);
+    }
+
+    public function edit(Product $product){
+
+        $product = Product::find($product->id);
+
+        return view('product._edit-product', compact('product'));
+
     }
 }

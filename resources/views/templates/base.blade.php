@@ -10,6 +10,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.5"></script>
 </head>
 <body>
     <div class="w-[1200px] mx-auto">
