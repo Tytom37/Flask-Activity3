@@ -33,14 +33,13 @@ class ProductController extends Controller
         if($validator->fails()) {
             $products = Product::orderBy('name');
             return view('templates._error', ['errors' => $validator->errors(), 'products' => $products]);
-
         };
 
         $products = Product::orderBy('name');
 
         Product::create($request->all());
 
-        return view('templates._products-list',['products'=>$products]);
+        return view('templates._products-list', ['product'=>$products]);
     }
 
     public function update(Request $request, Product $product) {
@@ -51,24 +50,31 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'qty' => 'required|integer',
         ]);
-
+        $products = Product::orderBy('name');
         $product->update($fields);
 
-        return view('pages.products');
+        return view('templates._products-list', ['product' => $products]);
     }
 
     public function destroy(Product $product) {
-        $product = Product::find($product->id);
+        $products = Product::find($product->id);
         $product->delete();
 
-        return view('templates._products-list-for-create', ['products'=>$product]);
+        return view('templates._products-list', ['product'=>$products]);
     }
+
+    // public function destroy(Product $product) {
+    //     $products = Product::find($product->id);
+    //     $product->delete();
+
+    //     return "";
+    // }
 
     public function edit(Product $product){
 
         $product = Product::find($product->id);
 
-        return view('product._edit-product', compact('product'));
+        return view('product._edit-product', ['product' => $product]);
 
     }
 }
