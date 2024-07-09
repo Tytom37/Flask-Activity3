@@ -10,15 +10,14 @@ class ProductController extends Controller
 {
     public function index(Request $request) {
 
-        $query = Product::orderBy('name');
+        $products =  Product::orderBy('name');
         
         if ($request->filter) {
-            $products->where('name', 'like', "%$request->filter%");
+            $products->where('name', 'like', "%$request->filter%")
+                    ->orWhere('description', 'like', "%$request->filter%");
         }
 
-        $products = $query->get();
-
-        return view('templates._list-of-products', ['products' => $products]);
+        return view('templates._products-list', ['products' => $products]);
     }
 
     public function store(Request $request) {
@@ -35,11 +34,9 @@ class ProductController extends Controller
             return view('templates._error', ['errors' => $validator->errors(), 'products' => $products]);
         };
 
-        $products = Product::orderBy('name');
+        $products = Product::create($request->all());
 
-        Product::create($request->all());
-
-        return view('templates._products-list', ['product'=>$products]);
+        return view('templates._products-list', ['products'=>$products]);
     }
 
     public function update(Request $request, Product $product) {
@@ -57,18 +54,10 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product) {
-        $products = Product::find($product->id);
         $product->delete();
 
-        return view('templates._products-list', ['product'=>$products]);
+        return "";
     }
-
-    // public function destroy(Product $product) {
-    //     $products = Product::find($product->id);
-    //     $product->delete();
-
-    //     return "";
-    // }
 
     public function edit(Product $product){
 
