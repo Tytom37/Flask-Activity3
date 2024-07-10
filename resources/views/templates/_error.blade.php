@@ -1,8 +1,6 @@
-@include('templates._products-list', ['product' => $products]);
-
 @if ($errors->has('name'))
     <div id="name_error" hx-swap-oob="true">
-        <div class="bg-red-200 text-red-800 p-4 rounded">
+        <div class="bg-red-200 text-red-800 p-2 mt-2 rounded">
             <ul class="ms-2">
                 @foreach ($errors->get('name') as $error)
                     <li>{{$error}}</li>
@@ -14,7 +12,7 @@
 
 @if ($errors->has('desc'))
     <div id="desc_error" hx-swap-oob="true" >
-        <div class="bg-red-200 text-red-800 p-4 rounded">
+        <div class="bg-red-200 text-red-800 p-2 mt-2 rounded">
             <ul class="ms-2">
                 @foreach ($errors->get('desc') as $error)
                     <li>{{$error}}</li>
@@ -26,7 +24,7 @@
 
 @if ($errors->has('price'))
     <div id="price_error" hx-swap-oob="true">
-        <div class="bg-red-200 text-red-800 p-4 rounded">
+        <div class="bg-red-200 text-red-800 p-2 mt-2 rounded">
             <ul class="ms-2">
                 @foreach ($errors->get('price') as $error)
                     <li>{{$error}}</li>
@@ -38,7 +36,7 @@
 
 @if ($errors->has('qty'))
     <div id="qty_error" hx-swap-oob="true">
-        <div class="bg-red-200 text-red-800 p-4 rounded">
+        <div class="bg-red-200 text-red-800 p-2 mt-2 rounded">
             <ul class="ms-2">
                 @foreach ($errors->get('qty') as $error)
                     <li>{{$error}}</li>

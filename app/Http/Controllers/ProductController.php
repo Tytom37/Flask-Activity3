@@ -10,11 +10,11 @@ class ProductController extends Controller
 {
     public function index(Request $request) {
 
-        $products =  Product::orderBy('name');
+        $products =  Product::orderBy('created_at', 'desc');
         
         if ($request->filter) {
             $products->where('name', 'like', "%$request->filter%")
-                    ->orWhere('description', 'like', "%$request->filter%");
+                    ->orWhere('desc', 'like', "%$request->filter%");
         }
 
         return view('templates._products-list', ['products' => $products]);
@@ -34,9 +34,9 @@ class ProductController extends Controller
             return view('templates._error', ['errors' => $validator->errors(), 'products' => $products]);
         };
 
-        $products = Product::create($request->all());
+        $newProduct = Product::create($request->all());
 
-        return view('templates._products-list', ['products'=>$products]);
+        return view('templates._list-of-products', ['prod'=>$newProduct]);
     }
 
     public function update(Request $request, Product $product) {

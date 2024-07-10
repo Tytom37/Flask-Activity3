@@ -8,7 +8,7 @@
                 hx-post="/api/products"
                 hx-trigger="submit"
                 hx-target="#products_list"
-                hx-swap="innerHTML"
+                hx-swap="afterbegin swap:1.1s"
                 hx-on::after-request="this.reset(); document.getElementById('closeButton').style.display = 'block';"
             >
             @csrf

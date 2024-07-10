@@ -10,6 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <script src="https://unpkg.com/htmx.org@1.6.1"></script>
     <script src="https://unpkg.com/htmx.org@1.8.5"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
