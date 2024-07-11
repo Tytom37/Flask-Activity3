@@ -1,4 +1,4 @@
-<div class="p-4 rounded-border border-gray-400 shadow mb-2 fade-me-out" id="product{{ $prod->id }}">
+<div class="p-4 rounded-border border-gray-400 shadow mb-2 fade-me-out fade-me-in" id="product{{ $prod->id }}">
     @include('templates._confirm-delete-product', ['prod'=>$prod])
     <div class="text-2xl">{{ $prod->name }}</div>
     <div class="italic text-gray-500 py-2">{{ $prod->desc }}</div>
